@@ -1,13 +1,13 @@
 "use strict";
 
-let incomeInput = document.querySelector(".income__input").value;
-let expensesInput = document.querySelector(".expenses__input").value;
-let incomeBtn = document.querySelector(".income__btn");
-let expensesBtn = document.querySelector(".expenses__btn");
-let totalIncome = document.querySelector(".income__input--total").value;
-let totalExpenses = document.querySelector(".expenses__input--total").value;
-let totalBudget = document.querySelector(".budget--total").value;
-let calculateBudgetBtn = document.querySelector(".budget__btn");
+const income = document.getElementById("income__input");
+const expenses = document.getElementById("expenses__input");
+const incomeBtn = document.getElementById("income__btn");
+const expensesBtn = document.getElementById("expenses__btn");
+const totalIncome = document.getElementById("income__input--total");
+const totalExpenses = document.getElementById("expenses__input--total");
+const totalBudget = document.getElementById("budget--total");
+const calculateBudgetBtn = document.getElementById(".budget__btn");
 
 // Creates Budget class
 class Budget {
@@ -44,9 +44,39 @@ const myExpenses = new MyTotals(totalExpenses);
 const myBudget = new MyBudgetTotal(totalBudget);
 
 // Event listeners for income/expenses buttons
-incomeBtn.addEventListener("click", myIncome.display(incomeInput));
-expensesBtn.addEventListener("click", myExpenses.display(expensesInput));
-calculateBudgetBtn.addEventListener("click", myBudget.display());
+// incomeBtn.addEventListener("click", myIncome.display(incomeInput));
+// expensesBtn.addEventListener("click", myExpenses.display(expensesInput));
+// calculateBudgetBtn.addEventListener("click", myBudget.display());
 
-myIncome.display(incomeInput);
-myBudget.display();
+// Hardcoded event listeners
+incomeBtn.addEventListener("click", function (incomeInput) {
+  incomeInput = income.value;
+  totalIncome += incomeInput;
+  console.log(totalIncome);
+  return;
+});
+expensesBtn.addEventListener("click", function (expensesInput) {
+  expensesInput = expenses.value;
+  totalExpenses += expensesInput;
+  console.log(totalExpenses);
+  return;
+});
+calculateBudgetBtn.addEventListener("click", function () {
+  totalBudget = totalIncome - totalExpenses;
+  console.log(totalBudget);
+  return;
+});
+
+// typeof is string?
+// console.log(typeof myIncome["display"](incomeInput));
+// // typeof is function
+// console.log(
+//   typeof function (incomeInput) {
+//     console.log("MyTotals function works");
+//     return (this.total += incomeInput);
+//   }
+// );
+// myExpenses.display(incomeInput);
+// myBudget.display();
+
+// console.log(myExpenses["total"]);
