@@ -1,19 +1,18 @@
-let income = 0;
-let expenses = 0;
-let incomeBtn = "";
-let expensesBtn = "";
-let totalIncome = 0;
-let totalExpenses = 0;
-let totalBudget = 0;
-let calculateBudgetBtn = "";
+"use strict";
+
+let incomeInput = document.querySelector(".income__input").value;
+let expensesInput = document.querySelector(".expenses__input").value;
+let incomeBtn = document.querySelector(".income__btn");
+let expensesBtn = document.querySelector(".expenses__btn");
+let totalIncome = document.querySelector(".income__input--total").value;
+let totalExpenses = document.querySelector(".expenses__input--total").value;
+let totalBudget = document.querySelector(".budget--total").value;
+let calculateBudgetBtn = document.querySelector(".budget__btn");
 
 // Creates Budget class
 class Budget {
   constructor(total) {
     this.total = total;
-  }
-  display(num) {
-    return (this.total += num);
   }
 }
 
@@ -23,16 +22,18 @@ class MyTotals extends Budget {
     super(total);
   }
   display(num) {
+    console.log("MyTotals function works");
     return (this.total += num);
   }
 }
 
 // Inherits from Budget class
-class MyBudgetTotal extends Budget {
+class MyBudgetTotal extends MyTotals {
   constructor(total) {
     super(total);
   }
   display() {
+    console.log("MyBudgetTotal function works");
     return (this.total = totalIncome - totalExpenses);
   }
 }
@@ -43,6 +44,9 @@ const myExpenses = new MyTotals(totalExpenses);
 const myBudget = new MyBudgetTotal(totalBudget);
 
 // Event listeners for income/expenses buttons
-incomeBtn.addEventLlistener("click", myIncome.display(income));
-expensesBtn.addEventLlistener("click", myExpenses.display(expenses));
-calculateBudgetBtn.addEventLlistener("click", myBudget.display());
+incomeBtn.addEventListener("click", myIncome.display(incomeInput));
+expensesBtn.addEventListener("click", myExpenses.display(expensesInput));
+calculateBudgetBtn.addEventListener("click", myBudget.display());
+
+myIncome.display(incomeInput);
+myBudget.display();
