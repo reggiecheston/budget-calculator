@@ -4,29 +4,79 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="styles.scss" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="income">
-      <input type="text" id="input income__input" /><button
-        id="btn income__btn"
-      >
-        Add Income
-      </button>
-      <div id="income__input--total"></div>
-    </div>
-    <div id="expenses">
-      <input type="text" id="input expenses__input" /><button
-        id="btn expenses__btn"
-      >
-        Add Expense
-      </button>
-      <div id="expenses__input--total"></div>
-    </div>
-    <div id="budget">
-      <div id="budget--total"></div>
-      <button id="btn budget__btn">Calculate Budget</button>
-    </div>
+    <header>
+      <h1>Budget Calculator</h1>
+    </header>
+    <main>
+      <section class="main-input">
+        <div class="main-input__flex--items" id="income">
+          <h2 class="header">Income</h2>
+          <label for="income__description">Income ID</label>
+          <div class="main-input__flex--item">
+            <input
+              type="text"
+              class="input"
+              id="income__description"
+              placeholder="Item Name"
+            />
+            <div class="error" id="income__description--error"></div>
+          </div>
+
+          <label for="income__input">Amount</label>
+          <div class="main-input__flex--item">
+            <input
+              type="text"
+              class="input"
+              id="income__input"
+              placeholder="$0.00"
+            />
+            <div class="error" id="income__input--error"></div>
+          </div>
+
+          <button class="btn" id="income__btn">Add Income</button>
+          <ul class="income__items"></ul>
+          <div class="input-totals" id="income__input--total">$0.00</div>
+        </div>
+        <div class="main-input__flex--items" id="expenses">
+          <h2 class="header">Expenses</h2>
+          <label for="expenses__description">Expense ID</label>
+          <div class="main-input__flex--item">
+            <input
+              type="text"
+              class="input"
+              id="expenses__description"
+              placeholder="Item Name"
+            />
+            <div class="error" id="expenses__description--error"></div>
+          </div>
+
+          <label for="expenses__input">Amount</label>
+          <div class="main-input__flex--item">
+            <input
+              type="text"
+              class="input"
+              id="expenses__input"
+              placeholder="$0.00"
+            />
+            <div class="error" id="expenses__input--error"></div>
+          </div>
+
+          <button class="btn" id="expenses__btn">Add Expense</button>
+          <ul class="expenses__items"></ul>
+          <div class="input-totals" id="expenses__input--total">$0.00</div>
+        </div>
+      </section>
+      <div class="main-output" id="budget">
+        <div class="main-output__container">
+          <h2 class="header header--special">Budget</h2>
+          <div id="budget--total">$0.00</div>
+          <!-- <button class="btn" id="budget__btn">Calculate Budget</button> -->
+        </div>
+      </div>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>
