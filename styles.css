@@ -11,6 +11,7 @@ html body {
 html body header h1 {
   color: rgb(47, 101, 90);
   text-align: center;
+  padding-top: 5vh;
 }
 html body main {
   background-color: rgb(47, 101, 90);
@@ -38,7 +39,10 @@ html body .main-input .main-input__flex--items .header {
 html body .main-input .main-input__flex--items ul {
   padding: 0;
 }
-html body .main-input .main-input__flex--items .error {
+html body .main-input .main-input__flex--items .error__income--description,
+html body .main-input .main-input__flex--items .error__income--input,
+html body .main-input .main-input__flex--items .error__expenses--description,
+html body .main-input .main-input__flex--items .error__expenses--input {
   height: 2.5rem;
   color: red;
   font-size: 0.75rem;
@@ -66,7 +70,7 @@ html body .main-input .main-input__flex--items .expenses__items {
   background-color: white;
   color: rgb(47, 101, 90);
   margin-top: 2.75rem;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 html body .main-input .main-input__flex--items .income__items li,
 html body .main-input .main-input__flex--items .expenses__items li {
@@ -100,9 +104,6 @@ html body .main-output .main-output__container #budget-total {
 @media (min-width: 426px) {
   html body {
     height: 100vh;
-  }
-  html body header {
-    padding-top: 10vh;
   }
   html body .main-input {
     flex-direction: row;
