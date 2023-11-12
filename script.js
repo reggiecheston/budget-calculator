@@ -1,7 +1,7 @@
 "use strict";
 
-const income = document.getElementById("income__input");
-const expenses = document.getElementById("expenses__input");
+const incomeInput = document.getElementById("income__input");
+const expensesInput = document.getElementById("expenses__input");
 const incomeBtn = document.getElementById("income__btn");
 const expensesBtn = document.getElementById("expenses__btn");
 let totalIncome = 0;
@@ -28,8 +28,8 @@ class MyTotalIncome extends Budget {
     val2.value = val2.value.replace(",", "");
     console.log(val2.value);
 
-    // ensures input is valid before evaluating to avoid the case of outputting NaN
     val1 = parseFloat(val2.value);
+    // ensures input is valid before evaluating to avoid the case of outputting NaN
     if (val2.value != "" && isValidAmount(val2.value)) {
       this.total += val1;
       let incomeItem = document.createElement("li");
@@ -57,8 +57,8 @@ class MyTotalExpenses extends Budget {
     val2.value = val2.value.replace(",", "");
     console.log(val2.value);
 
-    // ensures input is valid before evaluating to avoid the case of outputting NaN
     val1 = parseFloat(val2.value);
+    // ensures input is valid before evaluating to avoid the case of outputting NaN
     if (val2.value != "" && isValidAmount(val2.value)) {
       this.total -= val1;
       let expensesItem = document.createElement("li");
@@ -94,9 +94,9 @@ const myIncome = new MyTotalIncome(totalIncome);
 const myExpenses = new MyTotalExpenses(totalExpenses);
 const myBudget = new MyBudgetTotal(totalBudget);
 
-// Event listeners for income/expenses buttons
+// Event listener for add income button
 incomeBtn.addEventListener("click", function () {
-  const incomeInput = parseFloat(income.value);
+  const incomeInputValue = parseFloat(incomeInput.value);
   const incomeDescription = document.getElementById(
     "income__description"
   ).value;
@@ -109,19 +109,25 @@ incomeBtn.addEventListener("click", function () {
   }
 
   // Validate Amount
-  if (!isValidAmount(incomeInput)) {
+  if (!isValidAmount(incomeInput.value)) {
     errorMessage("income__input", "Must include a valid dollar amount");
   } else {
     setSuccess("income__input");
   }
 
-  myIncome.display(incomeInput, income, totalIncome, incomeDescription);
+  myIncome.display(
+    incomeInputValue,
+    incomeInput,
+    totalIncome,
+    incomeDescription
+  );
   totalIncome = myIncome.total;
   myBudget.display();
 });
 
+// Event listener for add expense button
 expensesBtn.addEventListener("click", function () {
-  const expensesInput = parseFloat(expenses.value);
+  const expensesInputValue = parseFloat(expensesInput.value);
   const expensesDescription = document.getElementById(
     "expenses__description"
   ).value;
@@ -134,15 +140,15 @@ expensesBtn.addEventListener("click", function () {
   }
 
   // Validate Amount
-  if (!isValidAmount(expensesInput)) {
+  if (!isValidAmount(expensesInput.value)) {
     errorMessage("expenses__input", "Must include a valid dollar amount");
   } else {
     setSuccess("expenses__input");
   }
 
   myExpenses.display(
+    expensesInputValue,
     expensesInput,
-    expenses,
     totalExpenses,
     expensesDescription
   );
@@ -150,8 +156,8 @@ expensesBtn.addEventListener("click", function () {
   myBudget.display();
 });
 
-const errorMessage = (elementId, message) => {
-  const inputControl = document.getElementById(elementId).parentElement;
+const errorMessage = (element, message) => {
+  const inputControl = document.getElementById(element).parentElement;
   const errorDisplay = inputControl.querySelector(".error");
 
   if (errorDisplay) {
@@ -160,8 +166,8 @@ const errorMessage = (elementId, message) => {
   }
 };
 
-const setSuccess = (elementId) => {
-  const inputControl = document.getElementById(elementId).parentElement;
+const setSuccess = (element) => {
+  const inputControl = document.getElementById(element).parentElement;
   const errorDisplay = inputControl.querySelector(".error");
 
   if (errorDisplay) {
