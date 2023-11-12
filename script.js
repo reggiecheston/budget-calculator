@@ -22,8 +22,15 @@ class MyTotalIncome extends Budget {
     super(total);
   }
   display(val1, val2, val3, val4) {
-    if (val2.value != "") {
-      val1 = parseFloat(val2.value);
+    // removes '$' and ',' before evaluating
+    val2.value = val2.value.replace("$", "");
+    val2.value = val2.value.replace(",", "");
+    val2.value = val2.value.replace(",", "");
+    console.log(val2.value);
+
+    // ensures input is valid before evaluating to avoid the case of outputting NaN
+    val1 = parseFloat(val2.value);
+    if (val2.value != "" && isValidAmount(val2.value)) {
       this.total += val1;
       let incomeItem = document.createElement("li");
       incomeItem.textContent = `${val4}: $${val1.toFixed(2)}`;
@@ -44,8 +51,15 @@ class MyTotalExpenses extends Budget {
     super(total);
   }
   display(val1, val2, val3, val4) {
-    if (val2.value != "") {
-      val1 = parseFloat(val2.value);
+    // removes '$' and ',' before evaluating
+    val2.value = val2.value.replace("$", "");
+    val2.value = val2.value.replace(",", "");
+    val2.value = val2.value.replace(",", "");
+    console.log(val2.value);
+
+    // ensures input is valid before evaluating to avoid the case of outputting NaN
+    val1 = parseFloat(val2.value);
+    if (val2.value != "" && isValidAmount(val2.value)) {
       this.total -= val1;
       let expensesItem = document.createElement("li");
       expensesItem.textContent = `${val4}: $-${val1.toFixed(2)}`;
@@ -158,6 +172,11 @@ const setSuccess = (elementId) => {
 
 // regex to define input validity
 const isValidAmount = (amount) => {
-  const re = /^\$?[0-9]+(\.[0-9][0-9])?$/;
-  return re.test(amount);
+  // Remove dollar signs and commas before validation
+  let cleanedAmount = String(amount).replace(/[\$,]/g, "");
+  cleanedAmount = parseFloat(cleanedAmount);
+
+  // Validate the cleaned amount
+  const re = /^\d+(\.\d{1,2})?$/;
+  return re.test(cleanedAmount);
 };
