@@ -14,6 +14,14 @@ class Budget {
   constructor(total) {
     this.total = total;
   }
+  display() {
+    totalBudget = totalIncome + totalExpenses;
+    document.getElementById(
+      "budget--total"
+    ).textContent = `$${totalBudget.toFixed(2)}`;
+    console.log(`Total Budget: ${totalBudget.toFixed(2)}`);
+    return;
+  }
 }
 
 // Inherits from Budget class
@@ -78,14 +86,6 @@ class MyTotalExpenses extends Budget {
 class MyBudgetTotal extends Budget {
   constructor(total) {
     super(total);
-  }
-  display() {
-    totalBudget = totalIncome + totalExpenses;
-    document.getElementById(
-      "budget--total"
-    ).textContent = `$${totalBudget.toFixed(2)}`;
-    console.log(`Total Budget: ${totalBudget.toFixed(2)}`);
-    return;
   }
 }
 
