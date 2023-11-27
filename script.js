@@ -6,8 +6,9 @@ const incomeBtn = document.getElementById("income__btn");
 const expensesBtn = document.getElementById("expenses__btn");
 let totalIncome = 0;
 let totalExpenses = 0;
-let totalBudget = document.getElementById("budget--total");
+let totalBudget = document.getElementById("budget__total");
 const calculateBudgetBtn = document.getElementById("budget__btn");
+const budgetItems = document.querySelectorAll(".items__list li");
 
 // Creates Budget class
 class Budget {
@@ -15,11 +16,14 @@ class Budget {
     this.total = total;
   }
   display() {
-    totalBudget = totalIncome + totalExpenses;
-    document.getElementById(
-      "budget--total"
-    ).textContent = `$${totalBudget.toFixed(2)}`;
-    console.log(`Total Budget: ${totalBudget.toFixed(2)}`);
+    const budget = totalIncome + totalExpenses;
+    totalBudget.textContent = `$${budget.toFixed(2)}`;
+
+    if (budget > 0) {
+      totalBudget.style.color = "rgb(47, 148, 72)";
+    } else {
+      totalBudget.style.color = "rgb(148, 47, 47)";
+    }
     return;
   }
 }
@@ -34,7 +38,6 @@ class MyTotalIncome extends Budget {
     val2.value = val2.value.replace("$", "");
     val2.value = val2.value.replace(",", "");
     val2.value = val2.value.replace(",", "");
-    console.log(val2.value);
 
     val1 = parseFloat(val2.value);
     // ensures input is valid before evaluating to avoid the case of outputting NaN
@@ -42,12 +45,12 @@ class MyTotalIncome extends Budget {
       this.total += val1;
       let incomeItem = document.createElement("li");
       incomeItem.textContent = `${val4}: $${val1.toFixed(2)}`;
-      document.querySelector(".income__items").appendChild(incomeItem);
+      document.querySelector(".items__list").appendChild(incomeItem);
       val3 = this.total;
       document.getElementById(
         "income__input--total"
-      ).textContent = `$${val3.toFixed(2)}`;
-      console.log(`Total income: ${val3.toFixed(2)}`);
+      ).textContent = `Total Income: $${val3.toFixed(2)}`;
+      incomeItem.style.color = "rgb(47, 148, 72)";
     }
     return;
   }
@@ -63,7 +66,6 @@ class MyTotalExpenses extends Budget {
     val2.value = val2.value.replace("$", "");
     val2.value = val2.value.replace(",", "");
     val2.value = val2.value.replace(",", "");
-    console.log(val2.value);
 
     val1 = parseFloat(val2.value);
     // ensures input is valid before evaluating to avoid the case of outputting NaN
@@ -71,12 +73,12 @@ class MyTotalExpenses extends Budget {
       this.total -= val1;
       let expensesItem = document.createElement("li");
       expensesItem.textContent = `${val4}: $-${val1.toFixed(2)}`;
-      document.querySelector(".expenses__items").appendChild(expensesItem);
+      document.querySelector(".items__list").appendChild(expensesItem);
       val3 = this.total;
       document.getElementById(
         "expenses__input--total"
-      ).textContent = `$${val3.toFixed(2)}`;
-      console.log(`Total expenses: ${val3.toFixed(2)}`);
+      ).textContent = `Total Expenses: $${val3.toFixed(2)}`;
+      expensesItem.style.color = "rgb(148, 47, 47)";
     }
     return;
   }
@@ -163,6 +165,7 @@ const errorMessage = (element, message) => {
   if (errorDisplay) {
     errorDisplay.textContent = message;
     inputControl.classList.add("error");
+    document.getElementById(element).style.marginBottom = "0";
   }
 };
 
@@ -173,6 +176,7 @@ const setSuccess = (element) => {
   if (errorDisplay) {
     errorDisplay.textContent = "";
     inputControl.classList.remove("error");
+    document.getElementById(element).style.marginBottom = "0.75rem";
   }
 };
 
@@ -186,3 +190,10 @@ const isValidAmount = (amount) => {
   const re = /^\d+(\.\d{1,2})?$/;
   return re.test(cleanedAmount);
 };
+
+// budgetItems.forEach((i) => {
+//   i.addEventListener("click", function (e) {
+//     // remove clicked item from the DOM
+//     e.target.remove(i);
+//   });
+// });

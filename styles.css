@@ -4,108 +4,152 @@ html {
   box-sizing: border-box;
 }
 html body {
-  background: linear-gradient(rgba(0, 0, 0, 0), rgb(169, 86, 50));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgb(186, 186, 186));
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
+  max-width: 1024px;
+  margin: auto;
+  padding: 0 2rem;
 }
 html body header h1 {
-  color: rgb(47, 101, 90);
+  color: black;
   text-align: center;
   padding-top: 5vh;
 }
-html body main {
-  background-color: rgb(47, 101, 90);
-  border-radius: 0.5rem;
-  box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.8);
-  margin: 0 auto 3rem auto;
-  max-width: 35rem;
+html body header .budget__display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
 }
-html body .main-input {
+html body header .budget__display .budget__display--header {
+  font-size: 1.5rem;
+}
+html body header .budget__display .budget__display--total {
+  font-size: 4rem;
+  margin: 1rem 0;
+  color: rgb(148, 47, 47);
+}
+html body main .main-display {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
+  margin-bottom: 2rem;
+  height: 100vh;
 }
-html body .main-input .main-input__flex--items {
-  padding: 1rem;
-  text-align: center;
-  color: white;
+html body main .budget-calculator__display {
+  margin-bottom: 1rem;
 }
-html body .main-input .main-input__flex--items .header {
-  margin: 1rem 0;
-  padding-bottom: 1rem;
+html body main .budget-calculator__display .budget-calculator__inputs {
+  height: 100%;
+  display: flex;
+  padding: 0 0 1rem 0;
+  flex-direction: column;
 }
-html body .main-input .main-input__flex--items ul {
-  padding: 0;
+html body main .budget-calculator__display .budget-calculator__inputs h2 {
+  margin-top: 0;
 }
-html body .main-input .main-input__flex--items .error__income--description,
-html body .main-input .main-input__flex--items .error__income--input,
-html body .main-input .main-input__flex--items .error__expenses--description,
-html body .main-input .main-input__flex--items .error__expenses--input {
-  height: 2.5rem;
-  color: red;
-  font-size: 0.75rem;
-  padding-top: 0.25rem;
-  width: 7rem;
-  text-wrap: wrap;
-  margin: auto;
+html body main .budget-calculator__display .budget-calculator__inputs .budget-calculator__input {
+  border-radius: 1rem;
+  padding: 1.25rem;
+  width: 12rem;
+  margin: 0 auto;
 }
-html body .main-input .main-input__flex--items .btn {
-  color: white;
-  padding: 0.5rem 0.75rem;
+html body main .budget-calculator__display .budget-calculator__inputs .budget-calculator__input .main-input__flex--item input {
+  margin-bottom: 0.75rem;
   border: none;
-  border-radius: 0.25rem;
-  background-color: rgb(169, 86, 50);
-}
-html body .main-input .main-input__flex--items .btn:hover,
-html body .main-input .main-input__flex--items .btn:active {
-  cursor: pointer;
-  background-color: white;
-  color: rgb(47, 101, 90);
-}
-html body .main-input .main-input__flex--items .income__items,
-html body .main-input .main-input__flex--items .expenses__items {
-  height: 5.25rem;
-  background-color: white;
-  color: rgb(47, 101, 90);
-  margin-top: 2.75rem;
-  overflow-y: scroll;
-}
-html body .main-input .main-input__flex--items .income__items li,
-html body .main-input .main-input__flex--items .expenses__items li {
-  padding: 0.25rem;
-}
-html body .main-input .main-input__flex--items .input-totals {
-  margin: 1rem 0;
-}
-html body .main-output {
-  padding-bottom: 1rem;
-}
-html body .main-output .main-output__container {
-  text-align: center;
-  padding-bottom: 2rem;
-  background-color: white;
-  width: -moz-min-content;
-  width: min-content;
-  margin: 1rem auto;
-  color: rgb(47, 101, 90);
   border-radius: 0.5rem;
-  box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.8);
+  height: 2rem;
+  padding-left: 0.5rem;
 }
-html body .main-output .main-output__container h2 {
-  margin: 0;
-  padding: 1rem 2rem;
+html body main .budget-calculator__display .budget-calculator__inputs .budget-calculator__input .main-input__flex--item .income__input {
+  background-color: rgb(213, 235, 219);
 }
-html body .main-output .main-output__container #budget-total {
-  padding: 0 2rem;
+html body main .budget-calculator__display .budget-calculator__inputs .budget-calculator__input .main-input__flex--item .expenses__input {
+  background-color: rgb(241, 214, 214);
+}
+html body main .budget-calculator__display .budget-calculator__inputs .budget-calculator__input button {
+  border: none;
+  border-radius: 0.5rem;
+  height: 2rem;
+}
+html body main .budget-calculator__display .budget-calculator__inputs #income {
+  background-color: rgb(160, 201, 170);
+  margin-bottom: 1rem;
+}
+html body main .budget-calculator__display .budget-calculator__inputs #expenses {
+  background-color: rgb(201, 160, 160);
+}
+html body main .budget-calculator__display .error {
+  color: rgb(157, 0, 0);
+  font-size: 0.75rem;
+}
+html body main .items {
+  height: 100%;
+  background-color: white;
+  border-radius: 1rem;
+  overflow: scroll;
+  width: 100%;
+}
+html body main .items .items__list {
+  padding-top: 1rem;
+}
+html body main .items .items__list li {
+  list-style: none;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+html body main .totals {
+  padding-bottom: 4rem;
+  display: flex;
+}
+html body main .totals #income__input--total {
+  color: rgb(47, 148, 72);
+  padding-right: 2rem;
+}
+html body main .totals #expenses__input--total {
+  color: rgb(148, 47, 47);
 }
 
-@media (min-width: 426px) {
-  html body {
-    height: 100vh;
-  }
-  html body .main-input {
+@media (min-width: 470px) {
+  html body header .budget__display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     flex-direction: row;
+  }
+  html body main .budget-calculator__display {
+    margin-bottom: 0;
+  }
+  html body main .budget-calculator__display .budget-calculator__inputs {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  html body main .budget-calculator__display .budget-calculator__inputs .budget-calculator__input {
+    margin-bottom: 1rem;
+  }
+  html body main .budget-calculator__display #income {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+}
+@media (min-width: 769px) {
+  html body main .main-display {
+    display: flex;
+    flex-direction: row-reverse;
+    height: 65vh;
+  }
+  html body main .budget-calculator__display {
+    margin-bottom: 0;
+  }
+  html body main .budget-calculator__display .budget-calculator__inputs {
+    padding: 0 0 0 2rem;
+    flex-direction: column;
+    justify-content: start;
+  }
+  html body main .budget-calculator__display .budget-calculator__inputs .budget-calculator__input {
+    margin-bottom: 0;
+  }
+  html body main .budget-calculator__display #income {
+    margin-right: 0;
   }
 }/*# sourceMappingURL=styles.css.map */
