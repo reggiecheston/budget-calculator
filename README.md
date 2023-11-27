@@ -5,8 +5,8 @@ Build a budget tracker using SASS, and JavaScript. Practice functions and object
 ## Usage Guide:
 
 1. To add income and expenses, type the desired label (e.g. Rent), and the dollar amount with or without a dollar sign or commas (e.g 5000, $5000, $5,000), then click/tap the corresponding button.
-2. A list of past inputs will display in the respective containers below. Once you've input enough items the container becomes scrollable.
-3. In the budget container below, the total budget will automatically calculate as you add income or expenses.
+2. A list of past inputs will display in the main display container. Once you've input enough items the container becomes scrollable.
+3. The total budget will automatically calculate as you add income and expenses.
 4. Enjoy!
 
 ## Project Requirements:
